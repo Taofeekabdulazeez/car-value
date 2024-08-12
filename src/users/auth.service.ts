@@ -21,14 +21,15 @@ export class AuthService {
     // 2. hash the user password
 
     // 2.1 generate asalt
-    const salt = randomBytes(8).toString('hex');
+    // const salt = randomBytes(8).toString('hex');
     // 2.2 hash the salt and the password together
-    const hash = (await scrypt(password, salt, 32)) as Buffer;
+    // const hash = (await scrypt(password, salt, 32)) as Buffer;
     // 2.3 join the hashed result and the salt together
-    const hashedPassword = salt + '.' + hash;
+    // const hashedPassword = salt + '.' + hash;
 
     // 3. create a new user and save it
-    const user = this.usersService.create(email, hashedPassword);
+    // const user = this.usersService.create(email, hashedPassword);
+    const user = this.usersService.create(email, password);
 
     // 4. return the user
     return user;
@@ -37,10 +38,12 @@ export class AuthService {
   async signin(email: string, password: string) {
     const [user] = await this.usersService.find(email);
     if (!user) throw new NotFoundException('User not found');
-    const [salt, storedHash] = user.password.split('.');
-    const hash = (await scrypt(password, salt, 32)) as Buffer;
+    // const [salt, storedHash] = user.password.split('.');
+    // const hash = (await scrypt(password, salt, 32)) as Buffer;
 
-    if (storedHash !== hash.toString('hex')) throw new BadRequestException('');
+    // if (storedHash !== hash.toString('hex'))
+    if (password !== user.password)
+      throw new BadRequestException('Bad Request');
 
     return user;
   }
