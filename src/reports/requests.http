@@ -12,3 +12,18 @@ content-type: application/json
   "lat": 34,
   "year": 2020
 }
+
+
+### Change report approval
+
+PATCH  http://localhost:3000/reports/4
+content-type: application/json
+
+{
+  "approved": false
+}
+
+### Get estimate for an existing vehicle
+
+GET  http://localhost:3000/reports?make=toyota&year=2000&model=corrolla&lat=0&lng=34&mileage=30000
+content-type: application/json
