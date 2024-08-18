@@ -7,7 +7,7 @@ content-type: application/json
   "price": 10,
   "make": "toyota",
   "model": "corrolla",
-  "mileage": 20000,
+  "mileage": 20000, 
   "lng": 0,
   "lat": 34,
   "year": 2020
