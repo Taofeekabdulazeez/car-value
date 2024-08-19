@@ -28,10 +28,12 @@ export class UsersController {
   constructor(
     private usersService: UsersService,
     private authService: AuthService,
-  ) {}
+  ) {} 
+
 
   @Post('/signup')
-  async createUser(@Body() body: CreateUserDto, @Session() session: any) {
+  async createUser(@Body()
+   body: CreateUserDto, @Session() session: any) {
     const { email, password } = body;
 
     const user = await this.authService.signup(email, password);
